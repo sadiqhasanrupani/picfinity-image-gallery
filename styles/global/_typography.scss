@@ -1,0 +1,21 @@
+@use "./color" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Raleway-bold;
+  color: $black;
+}
+
+a {
+  color: $black;
+}
+a:hover,
+:focus,
+:active {
+  color: $black;
+}
+

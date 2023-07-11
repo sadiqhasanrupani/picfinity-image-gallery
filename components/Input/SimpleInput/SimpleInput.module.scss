@@ -1,0 +1,89 @@
+@use "../../../styles/global/color" as *;
+
+@font-face {
+  font-family: poppins-regular;
+  src: url("../../../assets/font/MontserratPoppins/Poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: montserrat-regular;
+  src: url("../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url("../../../assets/font/MontserratPoppins/Poppins/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: poppins-medium;
+  src: url("../../../assets/font/MontserratPoppins/Poppins/Poppins-Medium.ttf");
+}
+
+div {
+  &.simple-input-div {
+    input {
+      &.simple-input {
+        width: 18.75rem;
+        height: 2.8125rem;
+        border-radius: 0.625rem;
+        color: $black-800;
+        font-size: 15px;
+        font-family: montserrat-medium;
+        padding: 10px 15px;
+        border: 1px solid $black-800;
+        transition: 0.3s ease-in-out all;
+
+        &:active,
+        &:focus {
+          box-shadow: 0px 2px 0px 1px $purple;
+          outline: none;
+        }
+      }
+    }
+    // input[]
+    input[type="date"]::before {
+      content: "Select a date";
+      color: #999;
+      font-size: 14px;
+    }
+    input[type="date"]::-webkit-datetime-edit,
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-clear-button {
+      display: none;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    h6 {
+      margin-top: 0.313rem;
+      font-size: 15px !important;
+      font-family: montserrat-regular;
+      color: $red;
+      opacity: 0;
+    }
+  }
+  &.is-valid {
+    input {
+      border: 2px solid $red !important;
+      color: $red;
+      &::placeholder {
+        color: $red;
+      }
+      &:active,
+      &:focus {
+        box-shadow: 0px 1px 0px 1px $red !important;
+        border: 2px solid $red !important;
+      }
+    }
+    h6 {
+      opacity: 1;
+    }
+  }
+}

@@ -6,7 +6,7 @@ import styles from "./home.module.scss";
 const home = () => {
   return (
     <>
-      <div className={`${styles["page"]}`}>
+      <div className={`home-div ${styles["page"]}`}>
         <Login />
       </div>
     </>

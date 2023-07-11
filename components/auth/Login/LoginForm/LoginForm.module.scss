@@ -1,5 +1,23 @@
+@font-face {
+  font-family: montserrat-medium;
+  src: url("../../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Medium.ttf");
+}
+
 div {
   &.login-form {
-    
+    font-family: montserrat-medium;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: center;
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4125rem;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

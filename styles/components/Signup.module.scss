@@ -1,0 +1,47 @@
+@use "../../styles/global/color" as *;
+
+@font-face {
+  font-family: Montserrat semibold;
+  src: url("../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-SemiBold.ttf");
+}
+
+article {
+  &.article {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.875rem;
+    }
+
+    .signup-form {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .description {
+      display: flex;
+      gap: 0.625rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      font-family:
+        Montserrat semibold,
+        sans-serif;
+
+      a {
+        color: $purple2;
+        text-decoration: underline;
+      }
+    }
+  }
+}

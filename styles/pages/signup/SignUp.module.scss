@@ -1,0 +1,14 @@
+@use "../../global/color" as *;
+
+@font-face {
+  font-family: montserrat-medium;
+  src: url("../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Medium.ttf");
+}
+
+section {
+  &.section {
+    width: 100%;
+    height: 100vh;
+    font-family: montserrat-medium; 
+  }
+}

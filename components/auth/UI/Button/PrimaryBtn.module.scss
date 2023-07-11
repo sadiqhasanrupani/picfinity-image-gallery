@@ -1,0 +1,33 @@
+@use "../../../../styles/global/color" as *;
+
+@font-face {
+  font-family: montserrat-semibold;
+  src: url("../../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-SemiBold.ttf");
+}
+
+button {
+  &.btn {
+    width: 18.75rem;
+    height: 2.8125rem;
+    border-radius: 6.25rem;
+    border: none;
+    background-color: $purple2;
+    color: $white;
+    font-family: montserrat-semibold;
+    font-size: 1rem;
+    transition: 0.3s ease-in-out all;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 4px 4px 0px hsla(0, 0%, 0%, 0.65);
+    }
+
+    &:disabled {
+      background-color: $gray !important;
+      border: 2px solid $gray;
+      cursor: no-drop;
+      color: $white-800;
+      box-shadow: none !important;
+    }
+  }
+}

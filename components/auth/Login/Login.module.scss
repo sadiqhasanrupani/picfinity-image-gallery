@@ -1,8 +1,31 @@
+@use "../../../styles/global/color" as *;
+
+@font-face {
+  font-family: montserrat-semibold;
+  src: url("../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-SemiBold.ttf");
+};
+
 div {
-  &.login-card{
+  &.login-card {
+    font-family: montserrat-semibold;
     .logo {
       justify-content: center;
       margin-top: 2.06rem;
+    }
+    .login-form {
+      margin-top: 4.38rem;
+    }
+    .description {
+      margin-top: 1.25rem;
+      display: flex;
+      gap: 0.625rem;
+      justify-content: center;
+      font-size: 0.875rem;
+
+      a {
+        color: $purple2;
+        text-decoration: underline;
+      }
     }
   }
 }

@@ -1,0 +1,16 @@
+@use "color" as *;
+
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+html, body {
+  font-family: Raleway, sans-serif;
+  color: $black-700;
+}
