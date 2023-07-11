@@ -1,6 +1,4 @@
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
-dotenv.config();
 
 export default async function connectDatabase() {
   const client = await MongoClient.connect(

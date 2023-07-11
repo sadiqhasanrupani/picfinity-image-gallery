@@ -1,13 +1,14 @@
 import { NextApiRequest as Req, NextApiResponse as Res } from "next";
 import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
-dotenv.config();
 
 export default async function handler(req: Req, res: Res) {
+  console.log(process.env.MONGO_PASSWORD);
+
   const client = await MongoClient.connect(
-    `mongodb+srv://${process.env.MONGO_DB_NAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_DB_NAME}.qeweu2i.mongodb.net/?retryWrites=true&w=majority`
+    `mongodb+srv://sadiqhasan:BDMsJxAk0HyPHML9@image-gallery.qeweu2i.mongodb.net/?retryWrites=true&w=majority`
   );
+
 
   if (req.method === "POST") {
     try {
