@@ -1,0 +1,24 @@
+@font-face {
+  font-family: Kaushan Script;
+  src: url("../../assets/font/Kaushan_Script/KaushanScript-Regular.ttf");
+}
+
+div {
+  &.logo {
+    display: flex;
+    gap: 0.925rem;
+    align-items: center;
+    font-family: Kaushan Script;
+    .logo-img {
+      width: 3.4375rem;
+      height: 3.4375rem;
+      object-fit: cover;
+      border-radius: 3.4375rem;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.69);
+    }
+    p {
+      font-size: 1.75rem;
+      
+    }
+  }
+}
