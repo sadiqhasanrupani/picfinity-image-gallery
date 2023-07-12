@@ -9,7 +9,6 @@ export default async function handler(req: Req, res: Res) {
     `mongodb+srv://sadiqhasan:BDMsJxAk0HyPHML9@image-gallery.qeweu2i.mongodb.net/?retryWrites=true&w=majority`
   );
 
-
   if (req.method === "POST") {
     try {
       interface ReqData {
@@ -42,14 +41,16 @@ export default async function handler(req: Req, res: Res) {
       const db = client.db();
 
       const users = db.collection("users");
-      const user: Array<any> = await users
-        .find({ userName: userName as string })
-        .toArray();
+      const user = await users.findOne({
+        userName: userName as string,
+      });
 
-      if (user.length > 0) {
-        return res.status(401).json({
-          message: `${user[0].userName} already exists, try another username. `,
+      if (user) {
+        res.status(401).json({
+          message: `${user.userName} already exists, try another username. `,
         });
+
+        return client.close();
       }
 
       //^ converting the password into bcrypt hash system.

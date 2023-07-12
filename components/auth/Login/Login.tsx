@@ -10,7 +10,7 @@ import LoginForm from "./LoginForm/LoginForm";
 import Logo from "../../Logo/Logo";
 import Card from "@/components/Cards/Card/Card";
 
-const login = () => {
+const Login = () => {
   useEffect(() => {
     gsap.fromTo(".login-card-div", { x: 1000 }, { x: 0, ease: "power6" });
   }, []);
@@ -29,4 +29,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
