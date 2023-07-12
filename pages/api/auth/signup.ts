@@ -3,7 +3,6 @@ import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
 
 export default async function handler(req: Req, res: Res) {
-  console.log(process.env.MONGO_PASSWORD);
 
   const client = await MongoClient.connect(
     `mongodb+srv://sadiqhasan:BDMsJxAk0HyPHML9@image-gallery.qeweu2i.mongodb.net/?retryWrites=true&w=majority`
