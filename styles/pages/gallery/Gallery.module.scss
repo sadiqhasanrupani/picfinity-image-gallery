@@ -1,0 +1,10 @@
+@font-face {
+  font-family: Montserrat-medium;
+  src: url("../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Medium.ttf");
+}
+
+section {
+  &.section {
+    font-family: Montserrat-medium;
+  }
+}
