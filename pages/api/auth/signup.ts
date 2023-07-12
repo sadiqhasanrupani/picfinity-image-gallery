@@ -44,6 +44,8 @@ export default async function handler(req: Req, res: Res) {
         userName: userName as string,
       });
 
+      console.log(`\n ${users} \n`)
+
       if (user) {
         res.status(401).json({
           message: `${user.userName} already exists, try another username. `,

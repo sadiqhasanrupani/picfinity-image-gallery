@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { HTMLAttributes } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
 
 //^ styles
 import styles from "./Login.module.scss";
@@ -10,18 +9,14 @@ import LoginForm from "./LoginForm/LoginForm";
 import Logo from "../../Logo/Logo";
 import Card from "@/components/Cards/Card/Card";
 
-const Login = () => {
-  useEffect(() => {
-    gsap.fromTo(".login-card-div", { x: 1000 }, { x: 0, ease: "power6" });
-  }, []);
-
+const Login = ({ className }: HTMLAttributes<HTMLDivElement>) => {
   return (
-    <Card className={`login-card-div ${styles["login-card"]}`}>
+    <Card className={`login-card-div ${styles["login-card"]} ${className}`}>
       <Logo className={styles["logo"]} />
       <LoginForm className={styles["login-form"]} />
       <div className={styles["description"]}>
         <p>Don't have an account?</p>
-        <Link href={"/signup"} replace>
+        <Link href={"/"} replace>
           Register
         </Link>
       </div>

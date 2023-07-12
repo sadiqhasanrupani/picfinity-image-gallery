@@ -1,59 +1,53 @@
-import NextAuth, { User } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { WithId, Document } from "mongodb";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import Provider from "next-auth/providers";
 
-import connectDatabase from "@/lib/connectDatabase";
-import { verifyPassword } from "@/lib/auth/auth";
-
-interface MyUser extends User {
-  id: string;
-  userName?: string;
-}
-
-export default NextAuth({
-  session: {
-    strategy: "jwt",
-  },
+export const authOptions: NextAuthOptions = {
   providers: [
-    CredentialsProvider({
+    Provider.Credentials({
+      name: "Credentials",
       credentials: {
-        // Add your credential options here
+        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: Record<string, string> | undefined, req) {
-        const client = await connectDatabase();
+      async authorize(credentials) {
+        //^ destructuring the credentials
+        const { username, password } = credentials as any;
 
-        const userCollection = client
-          .db()
-          .collection<WithId<Document>>("users");
-
-        const userDocument = await userCollection.findOne({
-          userName: credentials?.userName,
+        const response = await fetch("http://localhost:3000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
         });
 
-        if (!userDocument) {
-          client.close();
-          throw new Error("No user found!");
+        if (response.status === 422) {
+          const resData = await response.json();
+          console.log(resData);
+
+          throw new Error(resData.message);
         }
 
-        const passIsValid = verifyPassword(
-          credentials?.password as string,
-          userDocument.userPassword
-        );
+        if (!response.ok) {
+          const resData = await response.json();
 
-        if (!passIsValid) {
-          client.close();
-          throw new Error("Could not log you in.");
+          throw new Error(resData.message || "Something went wrong");
         }
 
-        const user: MyUser = {
-          id: userDocument._id.toString(),
-          userName: userDocument.userName as string,
-        };
+        const user = await response.json();
 
-        client.close();
-
-        return user;
+        return { name: user.name, id: user.id, email: user.accessToken };
       },
     }),
   ],
-});
+
+  session: {
+    jwt: true,
+  },
+  pages: {
+    signIn: "/",
+    signOut: "/gallery",
+  },
+};
+
+export default NextAuth(authOptions);

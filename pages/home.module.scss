@@ -1,3 +1,10 @@
+@use "../styles/global/color" as *;
+
+@font-face {
+  font-family: Montserrat-medium;
+  src: url("../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Medium.ttf");
+}
+
 div {
   &.page {
     width: 100%;
@@ -5,5 +12,6 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Montserrat-medium;
   }
 }

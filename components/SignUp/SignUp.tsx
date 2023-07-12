@@ -1,4 +1,5 @@
 import React, { HTMLAttributes } from "react";
+import { signIn } from "next-auth/client";
 
 //^ styles
 import styles from "../../styles/components/Signup.module.scss";
@@ -17,7 +18,7 @@ const SignUp = ({ className }: HTMLAttributes<HTMLDivElement>) => {
         <SignupForm className={styles["signup-form"]} />
         <div className={styles["description"]}>
           <p>Already have an account?</p>
-          <Link href={"/"} replace>Login</Link>
+          <Link href={"/login"} replace>Login</Link>
         </div>
       </Card>
     </article>

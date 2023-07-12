@@ -9,6 +9,8 @@ section {
   &.section {
     width: 100%;
     height: 100vh;
-    font-family: montserrat-medium; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

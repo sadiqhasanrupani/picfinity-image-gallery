@@ -1,4 +1,5 @@
 import React, { HTMLAttributes, FormEvent, useState } from "react";
+import { useRouter } from "next/router";
 
 import styles from "./SignUpForm.module.scss";
 
@@ -8,11 +9,15 @@ import useInput from "@/hooks/use-input";
 //^ components
 import SimpleInput from "@/components/Input/SimpleInput/SimpleInput";
 import PrimaryBtn from "@/components/auth/UI/Button/PrimaryBtn";
+import LoadingWheel from "@/components/auth/UI/Loading/LoadingWheel";
 
 const SignUpForm = ({ className }: HTMLAttributes<HTMLDivElement>) => {
   //^ state hook
   const [isLoading, setIsLoading] = useState(false);
   const [validationErrMsg, setValidationErrMsg] = useState("");
+
+  //^ router
+  const router = useRouter();
 
   const {
     enteredValue: userEnteredValue,
@@ -90,8 +95,7 @@ const SignUpForm = ({ className }: HTMLAttributes<HTMLDivElement>) => {
 
     setIsLoading(false);
 
-    const resData = await postSignUp.json();
-    console.log(resData);
+    router.replace("/login");
   };
 
   return (
@@ -132,7 +136,7 @@ const SignUpForm = ({ className }: HTMLAttributes<HTMLDivElement>) => {
         </div>
         <div className={styles["button"]}>
           <PrimaryBtn disabled={!isFormValid} className={styles["primary-btn"]}>
-            {isLoading ? "loading..." : "SignUp"}
+            {isLoading ? <LoadingWheel /> : "SignUp"}
           </PrimaryBtn>
         </div>
       </form>
