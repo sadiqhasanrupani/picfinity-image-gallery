@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useSession } from "next-auth/client";
+import { useEffect, useState } from "react";
+import { getSession, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { gsap } from "gsap";
 
@@ -11,6 +11,8 @@ import SignUp from "@/components/SignUp/SignUp";
 
 const Home: React.FC = () => {
   const [session, loading] = useSession();
+  const [isLoading, setIsLoading] = useState(true);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -25,9 +27,19 @@ const Home: React.FC = () => {
     gsap.fromTo(".signup-card-div", { y: 1000 }, { y: 0, ease: "power4" });
   }, []);
 
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        router.replace("/gallery");
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, [router]);
+
   return (
     <div className={`signup-card-div home-div ${styles.page}`}>
-      {loading ? "Loading..." : <SignUp />}
+      {loading || isLoading ? "Loading..." : <SignUp />}
     </div>
   );
 };

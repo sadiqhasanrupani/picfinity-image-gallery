@@ -1,0 +1,46 @@
+section {
+  .section {
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: 0.9375rem;
+    .image {
+      width: 20rem;
+      height: 401px;
+      border-radius: 0.625rem 0.625rem 0rem 0rem;
+      object-fit: cover;
+    }
+
+    .like-section {
+      padding: 0.9375rem;
+      display: flex;
+      gap: 0.625rem;
+      align-items: center;
+    }
+
+    @media (min-width: 80rem) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      .image {
+        width: 25rem;
+      }
+    }
+
+    @media (min-width: 120rem) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5rem;
+
+      .image {
+        width: 35.25rem;
+        height: 18rem;
+      }
+    }
+  }
+}

@@ -1,15 +1,44 @@
+@use "../../styles/global/color" as *;
+
+@font-face {
+  font-family: Montserrat-medium;
+  src: url("../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Medium.ttf");
+}
+
 .app-bar {
   background-color: white !important;
   .container {
-    background-color: white;
     .tool-bar {
       padding: 0.9rem;
       display: flex;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+
+      .logo {
+        @media (max-width: 40rem) {
+          p {
+            // display: none;
+          }
+        }
+      }
+
+      .search {
+        color: $black !important;
+        & > * {
+          font-family: Montserrat-medium !important;
+        }
+      }
     }
-    
+
     .setting-box {
       .profile-div {
-        
+        width: 3rem;
+        height: 3rem;
+        box-shadow: 0px 2px 4px 1px $black-500;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

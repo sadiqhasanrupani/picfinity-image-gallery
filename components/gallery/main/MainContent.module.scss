@@ -1,0 +1,29 @@
+@use "../../../styles/global/color" as *;
+
+main {
+  &.main {
+    margin-top: 1rem;
+
+    .search-bar-div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .search-bar {
+        input {
+          border-radius: 0.625rem;
+          background-color: $black-100;
+        }
+      }
+    }
+
+    // .main-content {
+    // }
+
+    @media (min-width: 80rem) {
+      .search-bar-div {
+        display: none;
+      }
+    }
+  }
+}

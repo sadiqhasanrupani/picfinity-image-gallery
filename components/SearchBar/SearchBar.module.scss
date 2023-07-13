@@ -1,0 +1,47 @@
+@use "../../styles/global/color" as *;
+
+@font-face {
+  font-family: poppins-medium;
+  src: url("../../assets/font/MontserratPoppins/Poppins/Poppins-Medium.ttf");
+}
+
+.search-input {
+  position: relative;
+  input {
+    &.searchBar {
+      width: 21.875rem;
+      height: 3.313rem;
+      padding: 0.938rem;
+      font-size: 0.938rem;
+      background-color: hsl(0, 0%, 85%, 20%);
+      border: none;
+      border-radius: 0.625rem;
+      font-family: poppins-medium;
+      
+      &.searchBar[type="search"]::-webkit-search-cancel-button {
+        display: none;
+      }
+
+      &:active,
+      &:focus {
+        outline: none !important;
+      }
+      
+      &::placeholder {
+        color: $black-400;
+        font-size: 0.938rem;
+      }
+    }
+    &.dark-search {
+      color: $white;
+      &::placeholder {
+        color: $white;
+      }
+    }
+  }
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translate(19rem, -50%);
+  }   
+}

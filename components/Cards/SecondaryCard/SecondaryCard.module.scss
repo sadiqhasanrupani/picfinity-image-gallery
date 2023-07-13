@@ -1,0 +1,15 @@
+@use "../../../styles/global/color" as *;
+
+@font-face {
+  font-family: montserrat-regular;
+  src: url("../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Regular.ttf");
+}
+
+div {
+  &.card {
+    font-family: montserrat-regular;
+    border: 1px solid $black;
+    border-radius: 0.625rem;
+    box-sizing: border-box;
+  }
+}

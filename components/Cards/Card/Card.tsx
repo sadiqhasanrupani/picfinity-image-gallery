@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import styles from "./Card.module.scss";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   onBlur?: (event: FocusEvent<HTMLDivElement>) => void;
   onChange?: (event: ChangeEvent<HTMLDivElement>) => void;

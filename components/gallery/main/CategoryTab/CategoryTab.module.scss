@@ -1,0 +1,31 @@
+@use "../../../../styles/global/color" as *;
+
+@font-face {
+  font-family: montserrat-regular;
+  src: url("../../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: montserrat-medium;
+  src: url("../../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-Medium.ttf");
+}
+
+div {
+  &.category-tab {
+    .box {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      
+      .tab {
+        font-family: montserrat-regular;
+
+        @media (min-width: 80rem) {
+          font-family: montserrat-medium;
+        } 
+      }
+    }
+  }
+}

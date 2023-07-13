@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
-import { getSession, signOut, useSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
 
 //^ styles
 import styles from "../../styles/pages/gallery/Gallery.module.scss";
 
 //^ component
 import Header from "../../components/Headers/Header";
+import MainContent from "../../components/gallery/main/MainContent";
 
 const Gallery = () => {
   //^ state
   const [sessionIsLoading, setSessionIsLoading] = useState(true);
-  const [loadedSession, setLoadedSession]: any = useState();
-
-  const [session, loading] = useSession();
-
-  console.log(session);
-
-  const signOutHandler = () => {
-    signOut({ redirect: true, callbackUrl: "/" });
-  };
+  // const [loadedSession, setLoadedSession]: any = useState();
 
   useEffect(() => {
     const getSessionHandler = async () => {
@@ -36,7 +29,23 @@ const Gallery = () => {
 
   return (
     <section className={styles["section"]}>
-      {sessionIsLoading ? "loading..." : <Header />}
+      {sessionIsLoading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            height: "100vh",
+          }}
+        >
+          <p>"loading..."</p>
+        </div>
+      ) : (
+        <>
+          <Header />
+          <MainContent />
+        </>
+      )}
     </section>
   );
 };

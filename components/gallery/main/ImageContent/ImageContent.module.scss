@@ -1,0 +1,20 @@
+@font-face {
+  font-family: Montserrat-semibold;
+  src: url("../../../../assets/font/MontserratPoppins/Montserrat/montserrat/Montserrat-SemiBold.ttf");
+}
+
+section {
+  &.image-content {
+    position: relative;
+    left: -50%;
+    transform: translate(50%);
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      font-family: Montserrat-semibold;
+      font-size: 1.2rem;
+    }
+  }
+}
