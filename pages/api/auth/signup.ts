@@ -3,9 +3,8 @@ import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
 
 export default async function handler(req: Req, res: Res) {
-
   const client = await MongoClient.connect(
-    `mongodb+srv://sadiqhasan:BDMsJxAk0HyPHML9@image-gallery.qeweu2i.mongodb.net/?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@${process.env.MONGO_DB_NAME}.qeweu2i.mongodb.net/?retryWrites=true&w=majority`
   );
 
   if (req.method === "POST") {
@@ -44,7 +43,7 @@ export default async function handler(req: Req, res: Res) {
         userName: userName as string,
       });
 
-      console.log(`\n ${users} \n`)
+      console.log(`\n ${users} \n`);
 
       if (user) {
         res.status(401).json({

@@ -39,20 +39,20 @@ const handler = async (req: Req, res: Res) => {
       return res.status(422).json({ message: "password is in-valid" });
     }
 
-    // //^ creating jwt token
-    // const token = jwt.sign(
-    //   {
-    //     id: userDoc._id.toString(),
-    //     username: userDoc?.userName,
-    //   },
-    //   process.env.SECRET_TOKEN as string,
-    //   { expiresIn: "365d" }
-    // );
+    //^ creating jwt token
+    const token = jwt.sign(
+      {
+        id: userDoc._id.toString(),
+        username: userDoc?.userName,
+      },
+      process.env.SECRET_TOKEN as string,
+      { expiresIn: "365d" }
+    );
 
     return res.status(200).json({
       id: userDoc._id.toString(),
       name: userDoc?.userName,
-      // accessToken: token,
+      accessToken: token,
     });
   } catch (error) {
     return res
