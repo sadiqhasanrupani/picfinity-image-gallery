@@ -47,7 +47,9 @@ const ImageContent = ({ topics, className }: ImageContentProps) => {
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/topics/${category.id}/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}&page=${page}`
+      `https://api.unsplash.com/topics/${
+        category.id
+      }/photos?client_id=${"nBxKGGR7wcXv3SD9UN3-PUapfJKrU8P17pnmIslhbV0"}&page=${page}`
     );
 
     if (!response.ok) {
@@ -61,7 +63,7 @@ const ImageContent = ({ topics, className }: ImageContentProps) => {
 
   const getImages = async () => {
     const response = await fetch(
-      `https://api.unsplash.com/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}&page=${page}`
+      `https://api.unsplash.com/photos?client_id=${"nBxKGGR7wcXv3SD9UN3-PUapfJKrU8P17pnmIslhbV0"}&page=${page}`
     );
 
     if (!response.ok) {
