@@ -21,7 +21,7 @@ const Home: React.FC = () => {
 
       router.replace("/gallery");
     }
-  }, [session]);
+  }, [session, router]);
 
   useEffect(() => {
     gsap.fromTo(".signup-card-div", { y: 1000 }, { y: 0, ease: "power4" });

@@ -77,11 +77,11 @@ const ImageContent = ({ topics, className }: ImageContentProps) => {
     if (Object.keys(category).length === 0) {
       getImages();
     }
-  }, [category]);
+  }, [category, getImages]);
 
   useEffect(() => {
     getCategoryImages();
-  }, [category.id, page]); // Update the dependency array to only include category.id and page
+  }, [category.id, page, getCategoryImages]); // Update the dependency array to only include category.id and page
 
   const images = imagesContent.map((image) => ({
     imageID: image.id as string,
