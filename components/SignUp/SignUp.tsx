@@ -1,5 +1,4 @@
 import React, { HTMLAttributes } from "react";
-import { signIn } from "next-auth/client";
 
 //^ styles
 import styles from "../../styles/components/Signup.module.scss";
