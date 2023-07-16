@@ -45,7 +45,7 @@ const handler = async (req: Req, res: Res) => {
         id: userDoc._id.toString(),
         username: userDoc?.userName,
       },
-      process.env.SECRET_TOKEN as string,
+      process.env.NEXTAUTH_SECRET_TOKEN as string,
       { expiresIn: "365d" }
     );
 
