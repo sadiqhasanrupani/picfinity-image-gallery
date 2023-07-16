@@ -1,5 +1,4 @@
-import { HTMLAttributes, FormEvent, useState, useEffect } from "react";
-import { signIn } from "next-auth/react";
+import { HTMLAttributes, FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 
 //^ styles
@@ -48,26 +47,50 @@ const LoginForm = ({ className }: HTMLAttributes<HTMLDivElement>) => {
 
     setIsLoading(true);
 
+    const data = {
+      username: userEnteredValue,
+      password: passEnteredValue,
+    };
+
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        username: userEnteredValue,
-        password: passEnteredValue,
-        // callbackUrl: "/",
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
 
-      console.log(result);
-
-      if (result && result?.error) {
-        setIsLoading(false);
-        setErrorResponse(result.error);
-      }
-
-      if (!result?.error) {
+      if (response.status === 422) {
         setIsLoading(false);
 
-        router.replace("/");
+        const resData = await response.json();
+        setErrorResponse(resData.message);
+
+        throw new Error(resData.message);
       }
+
+      if (!response.ok) {
+        setIsLoading(false);
+
+        const resData = await response.json();
+        setErrorResponse(resData.message);
+
+        throw new Error(resData.message || "Something went wrong");
+      }
+      setIsLoading(false);
+
+      interface loginResProps {
+        id?: string;
+        name?: string;
+        accessToken?: string;
+      }
+
+      const resData: loginResProps = await response.json();
+
+      localStorage.setItem("jwtToken", resData.accessToken as string);
+
+      router.replace("/");
     } catch (error) {
       setIsLoading(false);
       console.log(error);

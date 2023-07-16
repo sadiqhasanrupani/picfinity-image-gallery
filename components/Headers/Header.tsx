@@ -1,15 +1,15 @@
-//^ components
+//^ dependencies
 import React, { HTMLAttributes, useState } from "react";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+
+//^ client-auth
+import { removeToken } from "../../lib/auth/client-auth";
 
 //^ material UI component
 import {
-  Icon,
   MenuItem,
   Tooltip,
-  Button,
-  Avatar,
   Container,
   Menu,
   IconButton,
@@ -78,10 +78,8 @@ const Header = ({ className }: HeaderProps) => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  //^ session
-  const {data: session, status} = useSession();
-
-  const firstLetter = session?.user?.name?.charAt(0).toUpperCase();
+  //^ next router
+  const router = useRouter();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -95,8 +93,11 @@ const Header = ({ className }: HeaderProps) => {
   };
 
   const handleCloseUserMenu = () => {
-    signOut({ redirect: true, callbackUrl: "/login" });
     setAnchorElUser(null);
+
+    removeToken();
+
+    router.replace("/login");
   };
 
   return (
@@ -108,16 +109,6 @@ const Header = ({ className }: HeaderProps) => {
           </Link>
 
           <Box sx={{ flexGrow: 5, display: { xs: "flex" } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -135,13 +126,7 @@ const Header = ({ className }: HeaderProps) => {
               sx={{
                 display: { xs: "block", md: "none" },
               }}
-            >
-              {/* {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  {page}
-                </MenuItem>
-              ))} */}
-            </Menu>
+            ></Menu>
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -159,7 +144,7 @@ const Header = ({ className }: HeaderProps) => {
           <Box sx={{ flexGrow: 0 }} className={styles["setting-box"]}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <div className={styles["profile-div"]}>{firstLetter}</div>
+                <div className={styles["profile-div"]}>{"B"}</div>
               </IconButton>
             </Tooltip>
             <Menu

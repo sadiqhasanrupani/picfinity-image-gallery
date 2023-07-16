@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 //^ styles
 import styles from "../../styles/pages/gallery/Gallery.module.scss";
@@ -8,37 +8,31 @@ import styles from "../../styles/pages/gallery/Gallery.module.scss";
 import Header from "../../components/Headers/Header";
 import MainContent from "../../components/gallery/main/MainContent";
 
+//^ client-auth
+import { getAccessToken } from "@/lib/auth/client-auth";
+
 const Gallery = () => {
   //^ state
   const [sessionIsLoading, setSessionIsLoading] = useState(true);
-  // const [loadedSession, setLoadedSession]: any = useState();
+
+  //^ next route
+  const router = useRouter();
+
+  const token = getAccessToken();
 
   useEffect(() => {
-    const getSessionHandler = async () => {
-      const session = await getSession();
-
-      if (!session) {
-        window.location.href = "/login";
-      } else {
-        setSessionIsLoading(false);
-      }
-    };
-
-    getSessionHandler();
-  }, [setSessionIsLoading]);
+    if (!token) {
+      router.push("/login");
+    } else {
+      setSessionIsLoading(false);
+    }
+  }, []);
 
   return (
     <section className={styles["section"]}>
       {sessionIsLoading ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "center",
-            height: "100vh",
-          }}
-        >
-          <p>"loading..."</p>
+        <div className={styles["loading"]}>
+          <p>Loading...</p>
         </div>
       ) : (
         <>
