@@ -1,9 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
-import Provider from "next-auth/providers";
+import Credentials from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    Provider.Credentials({
+    Credentials({
       name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
@@ -42,7 +42,11 @@ export const authOptions: NextAuthOptions = {
   ],
 
   session: {
-    jwt: true,
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET_TOKEN,
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET_TOKEN,
   },
   pages: {
     signIn: "/",

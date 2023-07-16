@@ -1,7 +1,7 @@
 //^ components
 import React, { HTMLAttributes, useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/client";
+import { useSession, signOut } from "next-auth/react";
 
 //^ material UI component
 import {
@@ -26,7 +26,6 @@ import styles from "./Header.module.scss";
 
 //^ components
 import Logo from "../Logo/LogoInvert/LogoInvert";
-import { signOut } from "next-auth/client";
 
 interface HeaderProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -38,7 +37,7 @@ const Search = styled("div")(({ theme }) => ({
   borderRadius: "0.313rem",
   backgroundColor: alpha(theme.palette.common.black, 0.15),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.black, 0.20),
+    backgroundColor: alpha(theme.palette.common.black, 0.2),
   },
   marginLeft: 0,
   width: "100%",
@@ -76,15 +75,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = ({ className }: HeaderProps) => {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   //^ session
-  const [session, loading] = useSession();
+  const {data: session, status} = useSession();
 
   const firstLetter = session?.user?.name?.charAt(0).toUpperCase();
 
@@ -109,7 +104,7 @@ const Header = ({ className }: HeaderProps) => {
       <Container maxWidth="xl" className={styles["container"]}>
         <Toolbar disableGutters className={styles["tool-bar"]}>
           <Link href={"/gallery"}>
-            <Logo className={styles['logo']}/>
+            <Logo className={styles["logo"]} />
           </Link>
 
           <Box sx={{ flexGrow: 5, display: { xs: "flex" } }}>
@@ -150,7 +145,7 @@ const Header = ({ className }: HeaderProps) => {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Search className={styles['search']}>
+            <Search className={styles["search"]}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 
 //^ styles
 import styles from "../../styles/pages/gallery/Gallery.module.scss";
@@ -25,7 +25,7 @@ const Gallery = () => {
     };
 
     getSessionHandler();
-  }, []);
+  }, [setSessionIsLoading]);
 
   return (
     <section className={styles["section"]}>

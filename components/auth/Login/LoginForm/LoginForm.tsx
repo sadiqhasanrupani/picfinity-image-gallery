@@ -1,5 +1,5 @@
 import { HTMLAttributes, FormEvent, useState, useEffect } from "react";
-import { signIn, useSession, getSession } from "next-auth/client";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
 //^ styles
@@ -20,9 +20,6 @@ const LoginForm = ({ className }: HTMLAttributes<HTMLDivElement>) => {
 
   //^ next router
   const router = useRouter();
-
-  //^ next auth session
-  const [session, loading] = useSession();
 
   const {
     enteredValue: userEnteredValue,
